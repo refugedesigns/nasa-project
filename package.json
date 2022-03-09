@@ -1,0 +1,26 @@
+{
+  "name": "nasa-project",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "server": "npm run watch --prefix server",
+    "client": "npm start --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "install-server": "npm install --prefix server",
+    "install-client": "npm install --prefix client",
+    "install": "npm run install-server && npm run install-client"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/refugedesigns/nasa-project.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/refugedesigns/nasa-project/issues"
+  },
+  "homepage": "https://github.com/refugedesigns/nasa-project#readme"
+}
