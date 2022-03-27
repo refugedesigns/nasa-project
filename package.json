@@ -10,7 +10,10 @@
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "install-server": "npm install --prefix server",
     "install-client": "npm install --prefix client",
-    "install": "npm run install-server && npm run install-client"
+    "install": "npm run install-server && npm run install-client",
+    "deploy": "npm run build --prefix client && npm run watch --prefix server",
+    "deploy-cluster": "npm run build --prefix client && npm run cluster --prefix server",
+    "test-server": "npm test --prefix server"
   },
   "repository": {
     "type": "git",
@@ -22,5 +25,10 @@
   "bugs": {
     "url": "https://github.com/refugedesigns/nasa-project/issues"
   },
-  "homepage": "https://github.com/refugedesigns/nasa-project#readme"
+  "homepage": "https://github.com/refugedesigns/nasa-project#readme",
+  "dependencies": {
+    "jest": "^27.5.1",
+    "mongoose": "^6.2.8",
+    "supertest": "^6.2.2"
+  }
 }

@@ -1,15 +1,30 @@
+const path = require("path");
 const express = require("express");
-const cors = require("cors")
+const cors = require("cors");
+const morgan = require("morgan");
 
-const planetsRouter = require("./routes/planets/planets.router")
+const planetsRouter = require("./routes/planets/planets.router");
+const launchesRouter = require("./routes/launches/launches.router");
+const errorHandler  = require("./middlewares/error");
 
 const app = express();
 
-app.use(cors({
-    origin: "http://localhost:3000"
-}))
-app.use(express.json())
+app.use(
+  cors({
+    origin: "http://localhost:3000",
+  })
+);
+app.use(morgan("combined"));
 
-app.use(planetsRouter)
+app.use(express.json());
+app.use(express.static(path.join(__dirname, "..", "public")));
+
+app.use(planetsRouter);
+app.use("/launches",launchesRouter)
+app.get("/*", (req, res) => {
+  res.sendFile(path.join(__dirname, "..", "public", "index.html"));
+});
+
+app.use(errorHandler)
 
 module.exports = app;
