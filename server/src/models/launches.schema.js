@@ -20,7 +20,6 @@ const launchSchema = new mongoose.Schema({
     target: {
         ref: 'Planet',
         type: mongoose.ObjectId,
-        required: [true, 'target field is required!']
     },
     customers: {
         type: [String],

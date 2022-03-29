@@ -6,12 +6,12 @@ const {
   existsLaunchWithId,
   abortLaunch,
 } = require("../../models/launches.model");
-const { getPlanet } = require("../../models/planets.model");
-const StatusError = require("../../custom-error");
+const getPagination = require("../../utils/query");
 
 const httpGetAllLaunches = asyncHandler(async (req, res, next) => {
-  const allLaunches = await getAllLaunches();
-  return res.status(200).json(allLaunches);
+  const { skip, limit } = getPagination(req.query)
+  const launches = await getAllLaunches(skip, limit);
+  return res.status(200).json(launches);
 });
 
 const httpCreateLaunch = asyncHandler(async (req, res) => {
@@ -23,11 +23,6 @@ const httpCreateLaunch = asyncHandler(async (req, res) => {
   }
   if (!launchDate) {
     return res.status(400).json({ error: "Missing required launch property" });
-  }
-
-  const targetPlanet = await getPlanet(target);
-  if (!targetPlanet) {
-    return res.status(404).json({error: 'target planet not found in the database'});
   }
 
   const newLaunch = {
