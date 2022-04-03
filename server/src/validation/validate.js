@@ -4,7 +4,7 @@ const validateLaunches = [
     check("mission", 'invalid mission name!').notEmpty().isString(),
     check("rocket", 'invalid rocket name!').notEmpty().isString(),
     check("launchDate", 'invalid launch date!').notEmpty(),
-    check("target", 'invalid target!').notEmpty(), 
+    check("target", 'invalid target!').notEmpty().isString(), 
     (req, res, next) => {
         const errors = validationResult(req)
         if(!errors.isEmpty()) {

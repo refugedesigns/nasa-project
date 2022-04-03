@@ -1,6 +1,7 @@
 const axios = require("axios");
 
 const launches = require("./launches.schema");
+const { getPlanet } = require("./planets.model")
 
 const DEFAULT_FLIGHT_NUMBER = 100;
 
@@ -94,7 +95,7 @@ async function scheduleNewLaunch(launch) {
     throw new Error("No matching planet found!");
   }
 
-  const newFlightNumber = (await getLatestFlightNumber()) + 1;
+  const newFlightNumber = await getLatestFlightNumber() + 1;
   const newLaunch = Object.assign(launch, {
     customers: ["Zero to Mastery", "NASA"],
     flightNumber: newFlightNumber,

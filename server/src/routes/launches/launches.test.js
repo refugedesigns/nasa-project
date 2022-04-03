@@ -4,7 +4,14 @@ const app = require("../../app");
 const { loadPlanetsData } = require("../../models/planets.model");
 const { mongoConnect, mongoDisconnect } = require("../../utils/connect-db");
 
+
+
+
 describe("Launches API", () => {
+  beforeEach(() => {
+    jest.setTimeout(60000);
+  });
+
   beforeAll(async () => {
     await mongoConnect();
     await loadPlanetsData();
@@ -24,6 +31,10 @@ describe("Launches API", () => {
   });
 
   describe("Test POST /launch", () => {
+    beforeEach(() => {
+      jest.setTimeout(60000);
+    });
+
     const completeLaunchData = {
       mission: "USS Enterprise",
       rocket: "NCC 1701-D",

@@ -1,6 +1,6 @@
 const { parse } = require("csv-parse");
 const fs = require("fs");
-const path = require("path")
+const path = require("path");
 
 const planets = require("./planets.schema");
 
@@ -13,6 +13,7 @@ function isHabitablePlanet(planet) {
     planet["koi_prad"] < 1.6
   );
 }
+
 
 function loadPlanetsData() {
   return new Promise((resolve, reject) => {
