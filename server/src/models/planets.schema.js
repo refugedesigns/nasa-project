@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const planetSchema = new mongoose.Schema({
   keplerName: {
     type: String,
-    required: [true, "name of planet is required!"],
+    required: true
   },
 }, { timestamps: true});
 

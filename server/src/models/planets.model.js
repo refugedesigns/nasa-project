@@ -4,7 +4,6 @@ const path = require("path")
 
 const planets = require("./planets.schema");
 
-const habitablePlanets = [];
 
 function isHabitablePlanet(planet) {
   return (
@@ -26,9 +25,9 @@ function loadPlanetsData() {
           columns: true,
         })
       )
-      .on("data", (data) => {
+      .on("data", async(data) => {
         if (isHabitablePlanet(data)) {
-          savePlanets(data)
+          await savePlanets(data)
         }
       })
       .on("error", (err) => {
