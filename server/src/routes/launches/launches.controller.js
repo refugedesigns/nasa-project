@@ -29,7 +29,7 @@ const httpCreateLaunch = asyncHandler(async (req, res) => {
     mission,
     rocket,
     launchDate,
-    target: targetPlanet,
+    target
   };
   await scheduleNewLaunch(newLaunch);
   return res

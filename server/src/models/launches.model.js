@@ -89,9 +89,9 @@ async function getLatestFlightNumber() {
 }
 
 async function scheduleNewLaunch(launch) {
-  const targetPlanet = await getPlanet(target);
+  const targetPlanet = await getPlanet(launch.target);
   if (!targetPlanet) {
-    throw new Error("No matchin target found!");
+    throw new Error("No matching planet found!");
   }
 
   const newFlightNumber = (await getLatestFlightNumber()) + 1;
