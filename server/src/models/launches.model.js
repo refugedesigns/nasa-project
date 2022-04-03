@@ -82,15 +82,18 @@ async function saveLaunch(launch) {
 }
 
 async function getLatestFlightNumber() {
-  const latestLaunch = await launches.findOne({}).sort("-flightNumber");
+  let latestLaunch = await launches.findOne({}).sort("-flightNumber");
   if (!latestLaunch) {
-    return DEFAULT_FLIGHT_NUMBER;
+    latestLaunch = {
+      flightNumber: DEFAULT_FLIGHT_NUMBER
+    }
   }
   return latestLaunch.flightNumber;
 }
 
 async function scheduleNewLaunch(launch) {
   const targetPlanet = await getPlanet(launch.target);
+  launch.target = targetPlanet
   if (!targetPlanet) {
     throw new Error("No matching planet found!");
   }

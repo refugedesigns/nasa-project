@@ -8,17 +8,9 @@ const { mongoConnect, mongoDisconnect } = require("../../utils/connect-db");
 
 
 describe("Launches API", () => {
-  beforeEach(() => {
-    jest.setTimeout(60000);
-  });
-
   beforeAll(async () => {
     await mongoConnect();
     await loadPlanetsData();
-  });
-
-  afterAll(async () => {
-    await mongoDisconnect();
   });
 
   describe("Test GET /launches", () => {
@@ -31,10 +23,6 @@ describe("Launches API", () => {
   });
 
   describe("Test POST /launch", () => {
-    beforeEach(() => {
-      jest.setTimeout(60000);
-    });
-
     const completeLaunchData = {
       mission: "USS Enterprise",
       rocket: "NCC 1701-D",
@@ -96,5 +84,9 @@ describe("Launches API", () => {
         error: "Invalid launch date",
       });
     });
+  });
+
+  afterAll(async () => {
+    await mongoDisconnect();
   });
 });
